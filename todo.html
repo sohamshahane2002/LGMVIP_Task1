@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ToDo List</title>
+        <link rel="stylesheet" href="todo.css">
+    </head>
+    <body>
+        <div class="todo-container">
+            <h1>My To do List</h1>
+            <div class="add-todo">
+              <input type="text" id="newItemText">
+              <button onclick="addTodoItem()">Add</button>
+            </div>
+            <div class="todos">
+            </div>
+          </div>
+        
+          <script>
+            function addTodoItem() {
+              var newItemText = document.getElementById("newItemText").value;
+              if (newItemText !== "") {
+                var todos = document.getElementsByClassName("todos")[0];
+                var newItem = document.createElement("div");
+                newItem.className = "todo-item";
+                newItem.innerHTML = `
+                <input type="checkbox">
+                  <span>${newItemText}</span>
+                  <button onclick="removeTodoItem(this)">Delete</button>
+                `;
+                todos.appendChild(newItem);
+                document.getElementById("newItemText").value = "";
+              }
+            }
+        
+            function removeTodoItem(button) {
+              var todoItem = button.parentNode;
+              todoItem.parentNode.removeChild(todoItem);
+            }
+          </script>
+    </body>
+</html>
